@@ -1,0 +1,84 @@
+<odoo>
+
+    <template id="report_saleorder_rental"
+              inherit_id="sale.report_saleorder_document">
+
+
+        <xpath expr="//table[contains(@class,'o_main_table')]/thead" position="replace">
+            <thead>
+                <tr>
+                    <th>Vehicle</th>
+                    <th>Pickup</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Days</th>
+                    <th class="text-end">Price</th>
+                    <th class="text-end">Subtotal</th>
+                </tr>
+            </thead>
+        </xpath>
+
+
+        <!-- REMOVE default order lines table -->
+        <xpath expr="//tbody[@class='sale_tbody']" position="replace">
+            <tbody class="sale_tbody">
+
+                <t t-foreach="doc.rental_line_ids" t-as="line">
+                    <tr>
+                        <td>
+                            <span t-field="line.vehicle_id"/>
+                        </td>
+                        <td>
+                            <span t-field="line.pickup_location"/>
+                        </td>
+                        <td>
+                            <span t-field="line.start_date"/>
+                        </td>
+                        <td>
+                            <span t-field="line.end_date"/>
+                        </td>
+                        <td>
+                            <span t-field="line.days"/>
+                        </td>
+                        <td class="text-end">
+                            <span t-field="line.rent_price"
+                                  t-options="{'widget':'monetary','display_currency':doc.currency_id}"/>
+                        </td>
+                        <td class="text-end">
+                            <span t-field="line.subtotal"
+                                  t-options="{'widget':'monetary','display_currency':doc.currency_id}"/>
+                        </td>
+                    </tr>
+                </t>
+
+            </tbody>
+        </xpath>
+            <xpath expr="//div[@name='so_total_summary']" position="replace">
+
+        <div class="clearfix" name="so_total_summary">
+            <div id="total" class="row mt-n3">
+                <div class="col-sm-7 col-md-6 ms-auto">
+
+                    <table class="table table-borderless">
+                        <tr>
+                            <td class="text-end">
+                                <strong>Rental Total :</strong>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="doc.rental_total"
+                                      t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </xpath>
+
+
+
+    </template>
+
+</odoo>

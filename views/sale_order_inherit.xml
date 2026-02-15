@@ -35,17 +35,23 @@
                         </form>
 
                     </field>
+                    <group class="oe_subtotal_footer d-flex justify-content-end mt-3">
+                    <group>
+                        <field name="rental_total" readonly="1" string="Total Rental Amount"/>
+                    </group>
+                </group>
 
                 </page>
 
             </xpath>
+            <xpath expr="//button[@name='action_preview_sale_order']" position="replace">
+            </xpath>
+
 
         </field>
+
+
     </record>
-
-
-
-
 
 
 </odoo>

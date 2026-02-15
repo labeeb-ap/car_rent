@@ -8,9 +8,10 @@
 
     'depends': ['base_setup','fleet','sale'],
     'data': [
-        'views/sale_order_line.xml',
+        'views/sale_order_inherit.xml',
         'views/vehicle_rent.xml',
-        'security/ir.model.access.csv'
+        'security/ir.model.access.csv',
+        'report/qutation_template_inherits.xml'
 
     ],
 
